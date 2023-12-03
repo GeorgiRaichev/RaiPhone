@@ -1,7 +1,7 @@
 export default function Single(){
     return (
         <>
-  {/* Modal */}
+
   <div
     className="modal fade bg-white"
     id="templatemo_search"

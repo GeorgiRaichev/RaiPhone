@@ -10,6 +10,7 @@ import Single from './components/Single';
 import Register from './components/Register';
 import Login from './components/Login';
 import Error from './components/Error';
+import './assets/css/shop.css'
 import './assets/css/bootstrap.min.css';
 import './assets/css/custom.css';
 import './assets/css/fontawesome.css';

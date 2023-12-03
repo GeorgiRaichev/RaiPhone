@@ -1,9 +1,16 @@
+import * as phoneService from '../services/phoneService';
+import { useNavigate } from 'react-router-dom';
 export default function Add() {
-  const createPhoneSubmitHandler = (e) => {
+  const navigate = useNavigate();
+  const createPhoneSubmitHandler = async (e) => {
     e.preventDefault();
-    
-    const gameData = Object.fromEntries(new FormData(e.currentTarget));
-    console.log(gameData);
+
+    try {
+      const gameData = Object.fromEntries(new FormData(e.currentTarget));
+      navigate('/shop')
+    } catch (error) {
+      console.log(error);
+    }
 
   }
 
