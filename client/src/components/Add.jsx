@@ -1,42 +1,52 @@
 export default function Add() {
+  const createPhoneSubmitHandler = (e) => {
+    e.preventDefault();
+    
+    const gameData = Object.fromEntries(new FormData(e.currentTarget));
+    console.log(gameData);
+
+  }
+
+
+
   return (
     <div className="reg-bod">
-    <div className="reg-container">
-      <div className="reg-title">Add phone</div>
-      <div className="content">
-        <form action="#">
-          <div className="user-details">
-            <div className="input-box">
-              <span className="details">Brand</span>
-              <input type="text" placeholder="Enter brand" required="" />
+      <div className="reg-container">
+        <div className="reg-title">Add phone</div>
+        <div className="content">
+          <form action="create" onSubmit={createPhoneSubmitHandler}>
+            <div className="user-details">
+              <div className="input-box">
+                <span className="details">Brand</span>
+                <input type="text" name="brand" placeholder="Enter brand" required="" />
+              </div>
+              <div className="input-box">
+                <span className="details">Model</span>
+                <input type="text" name="model" placeholder="Enter model" required="" />
+              </div>
+              <div className="input-box">
+                <span className="details">Year</span>
+                <input type="text" name="year" placeholder="Enter year" required="" />
+              </div>
+              <div className="input-box">
+                <span className="details">Details</span>
+                <input type="text" name="details" placeholder="Enter details" required="" />
+              </div>
+              <div className="input-box">
+                <span className="details">Price/$</span>
+                <input type="text" name="price" placeholder="Enter price" required="" />
+              </div>
+              <div className="input-box">
+                <span className="details">Image</span>
+                <input type="text" name="imageUrl" placeholder="Upload a photo" required="" />
+              </div>
             </div>
-            <div className="input-box">
-              <span className="details">Model</span>
-              <input type="text" placeholder="Enter model" required="" />
+            <div className="reg-button">
+              <input type="submit" value="Add" />
             </div>
-            <div className="input-box">
-              <span className="details">Year</span>
-              <input type="text" placeholder="Enter year" required="" />
-            </div>
-            <div className="input-box">
-              <span className="details">Details</span>
-              <input type="text" placeholder="Enter details" required="" />
-            </div>
-            <div className="input-box">
-              <span className="details">Price/$</span>
-              <input type="text" placeholder="Enter price" required="" />
-            </div>
-            <div className="input-box">
-              <span className="details">Image</span>
-              <input type="text" placeholder="Upload a photo" required="" />
-            </div>
-          </div>
-          <div className="reg-button">
-            <input type="submit" value="Add" />
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
-    </div>
     </div>
   );
 }
