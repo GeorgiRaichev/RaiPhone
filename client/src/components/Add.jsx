@@ -4,17 +4,15 @@ export default function Add() {
   const navigate = useNavigate();
   const createPhoneSubmitHandler = async (e) => {
     e.preventDefault();
-
+    const phoneData = Object.fromEntries(new FormData(e.currentTarget));
     try {
-      const gameData = Object.fromEntries(new FormData(e.currentTarget));
+      console.log(await phoneService.create(phoneData));
       navigate('/shop')
     } catch (error) {
       console.log(error);
     }
 
   }
-
-
 
   return (
     <div className="reg-bod">

@@ -4,8 +4,7 @@ const baseUrl = 'http://localhost:3030/jsonstore/phones';
 
 export const getAll = async () => {
     const result = await request('GET',baseUrl);
-
-    return Object.values(result);
+    return (Object.values(Object.values(result)[0]));  
 };
 
 export const create = async (phoneData) => {
@@ -20,3 +19,4 @@ export const create = async (phoneData) => {
 
     return result;
 }
+
