@@ -5,7 +5,7 @@ export default function PhoneListItem({
     imageUrl, 
 }) {
     return (
-        <div className="s-container">
+        
             <div className="product">
                 <img src={imageUrl} alt="Product 1" />
                 <div className="product-info">
@@ -13,6 +13,6 @@ export default function PhoneListItem({
                     <div className="product-price">{price}$</div>
                 </div>
             </div>           
-        </div>
+        
     );
 }
