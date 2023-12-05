@@ -1,14 +1,19 @@
-import { request } from "../lib/request";
+import * as request from "../lib/request";
 
 const baseUrl = 'http://localhost:3030/jsonstore/phones';
 
 export const getAll = async () => {
-    const result = await request('GET',baseUrl);
-    return (Object.values(Object.values(result)[0]));  
+    const result = await request.request('GET',baseUrl);
+    return (Object.values(result));  
 };
-
+export const getOne = async (phoneId) => {
+    const result = await request.request('GET', `${baseUrl}/${phoneId}`);
+    
+    console.log(result);
+    return result;
+}
 export const create = async (phoneData) => {
-    const response = await fetch(`${baseUrl}/phones`, {
+    const response = await fetch(`${baseUrl}`, {
         method: 'POST',
         headers: {
             'content-type': 'application/json'

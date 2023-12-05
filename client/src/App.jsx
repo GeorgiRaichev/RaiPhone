@@ -6,7 +6,7 @@ import Home from './components/Home';
 import Shop from './components/Shop';
 import About from './components/About';
 import Add from './components/Add';
-import Single from './components/Single';
+import Details from './components/Details';
 import Register from './components/Register';
 import Login from './components/Login';
 import Error from './components/Error';
@@ -28,7 +28,6 @@ import './assets/css/add.css';
 
 
 
-
 function App() {
   const [count, setCount] = useState(0)
 
@@ -42,6 +41,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/add" element={<Add />} />
+        <Route path="/phones/:phoneId" element={<Details/>} />
         <Route path="*" element={<Error />} />
       </Routes>
       <Footer />

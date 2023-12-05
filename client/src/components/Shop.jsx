@@ -11,7 +11,7 @@ export default function Shop() {
             .then(result => setPhones(result));
     }, []);
 
-
+console.log(phones);
 
     return (
         <>
