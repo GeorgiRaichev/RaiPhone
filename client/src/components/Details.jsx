@@ -59,6 +59,9 @@ export default function Details() {
                                         <div className="col d-grid">
                                             <button type="submit" className="btn btn-success btn-lg" name="submit" value="buy">Buy</button>
                                         </div>
+                                        <div className="col d-grid">
+                                            <button type="submit" className="btn"id='favou' name="submit" value="buy">Favourites: 0</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
