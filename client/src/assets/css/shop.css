@@ -1,15 +1,43 @@
 .s-container {
     width: 97%;
     margin: 20px;
-    display: flex; 
+    display: flex;
     flex-wrap: wrap;
-    justify-content: space-between; 
+    justify-content: space-between;
 
 }
-.no-articles{
+
+.EditBtn {
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #50c878, #41d081);
+    position: relative;
+    left: 240px;
+}
+
+.DelBtn {
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color:#e44d26;
+    position: relative;
+    left: 240px;
+}
+
+.no-articles {
     margin-bottom: 400px;
 }
-.All-prod{
+
+.All-prod {
     text-align: center;
     color: #e44d26;
     margin-top: 20px;
@@ -24,10 +52,10 @@
     overflow: hidden;
     margin: 10px;
     width: 300px;
-    flex-basis: calc(25% - 40px); 
+    flex-basis: calc(25% - 40px);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
-    
+
 }
 
 .product:hover {
