@@ -10,9 +10,6 @@ export default function Shop() {
         phoneService.getAll()
             .then(result => setPhones(result));
     }, []);
-
-console.log(phones);
-
     return (
         <>
         <h2 className="All-prod">All products</h2>

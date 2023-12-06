@@ -1,18 +1,29 @@
-import { useEffect,useState } from 'react';
-import {useParams} from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import * as phoneService from '../services/phoneService';
-
+import * as commentService from '../services/commentService'
 
 export default function Details() {
     const [phone, setPhone] = useState({});
-    const {phoneId} = useParams();
-    console.log(phoneId);
-    
+    const { phoneId } = useParams();
+
     useEffect(() => {
         phoneService.getOne(phoneId)
             .then(setPhone)
-    },[phoneId]);
+    }, [phoneId]);
 
+
+    const addCommentHandler = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        const newComment = await commentService.create(
+            phoneId,
+            formData.get('username'),
+            formData.get('comment')
+        );
+        console.log(newComment);
+    }
+    
     return (
         <>
             <section className="bg-light">
@@ -44,7 +55,7 @@ export default function Details() {
                                             </p>
                                         </li>
                                     </ul>
-                                    <h6>Details: {phone.details}</h6>                                                                                                          
+                                    <h6>Details: {phone.details}</h6>
                                     <ul className="list-inline">
                                         <li className="list-inline-item">
                                             <h6>Avaliable Color :</h6>
@@ -60,12 +71,30 @@ export default function Details() {
                                             <button type="submit" className="btn btn-success btn-lg" name="submit" value="buy">Buy</button>
                                         </div>
                                         <div className="col d-grid">
-                                            <button type="submit" className="btn"id='favou' name="submit" value="buy">Favourites: 0</button>
+                                            <button type="submit" className="btn" id='favou' name="submit" value="buy">Favourites: 0</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <b className='com'>Comments</b>
+                    <div className='Comments-container'>
+                        <div className='comment'>
+                            <p>Content: I rate this product hightly</p>
+                        </div>
+                    </div>
+                    <div className='Add-com'>
+                        <form onSubmit={addCommentHandler}>
+                            <div className="add-commentText">                              
+                                <label className='lbladd'>Add new comment</label><br />
+                                <input type="text" name='username' placeholder='username' />
+                                <textarea name="comment" id="comment" cols="30" rows="10"className='input-add'></textarea>
+                            </div>
+                            <div className="add-commentBtn">
+                                <input type="submit"className="btn" id='addbtnn' value="Add comment" />
+                            </div>
+                        </form>
                     </div>
                 </div>
 

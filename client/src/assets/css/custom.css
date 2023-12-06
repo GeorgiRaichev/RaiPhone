@@ -1,7 +1,64 @@
-.image1{
+.image1 {
     height: 325px;
 }
-#favou{
+
+#favou {
     background-color: brown;
     color: white;
+}
+
+.Comments-container {
+    background-color: white;
+    border-style: dashed;
+}
+
+.comment {
+    color: white;
+    background-color: rgb(117, 81, 136);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 10px;
+    width: 300px;
+    flex-basis: calc(25% - 40px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.Add-com {
+    margin-top: 30px;
+    text-align: center;
+    background-color: rgb(117, 81, 136);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 10px;
+    width: 500px;
+    margin-left: 400px;
+}
+
+.add-commentBtn {
+    margin-top: 20px;
+
+}
+
+.input-add{
+    width: 300px;
+    height: 200px;
+    font-size: 20px;
+    margin-top: 15px;
+
+}
+
+.add-commentBtn {
+    margin-bottom: 10px;
+}
+
+.lbladd {
+    color: white;
+    margin-bottom: 5px;
+}
+#addbtnn{
+    background-color: rgb(181, 166, 196);
+    color:rgb(46, 46, 46);
 }

@@ -6,7 +6,7 @@ export default function Add() {
     e.preventDefault();
     const phoneData = Object.fromEntries(new FormData(e.currentTarget));
     try {
-      console.log(await phoneService.create(phoneData));
+      await phoneService.create(phoneData);
       navigate('/shop')
     } catch (error) {
       console.log(error);

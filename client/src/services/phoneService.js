@@ -9,7 +9,6 @@ export const getAll = async () => {
 export const getOne = async (phoneId) => {
     const result = await request.request('GET', `${baseUrl}/${phoneId}`);
     
-    console.log(result);
     return result;
 }
 export const create = async (phoneData) => {
