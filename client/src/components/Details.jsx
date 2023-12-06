@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import * as phoneService from '../services/phoneService';
-import * as commentService from '../services/commentService'
+import * as commentService from '../services/commentService';
 
 export default function Details() {
     const [phone, setPhone] = useState({});
@@ -10,15 +10,14 @@ export default function Details() {
 
     useEffect(() => {
         phoneService.getOne(phoneId)
-            .then(setPhone)
-        commentService.getAll()
+            .then(setPhone);
+        commentService.getAll(phoneId)
             .then(setComments);
     }, [phoneId]);
 
-
     const addCommentHandler = async (e) => {
         e.preventDefault();
-        const formData = new FormData(e.currentTarget);
+        const formData = new FormData(e.target);
 
         const newComment = await commentService.create(
             phoneId,
@@ -26,7 +25,10 @@ export default function Details() {
             formData.get('comment')
         );
         setComments(state => [...state, newComment]);
-    }
+
+        // Reset the form
+        e.target.reset();
+    };
 
     return (
         <>
@@ -46,7 +48,7 @@ export default function Details() {
                         <div className="col-lg-7 mt-5">
                             <div className="card">
                                 <div className="card-body">
-                                    <h1 className="h2">{phone.model}</h1>
+                                    <h1 className="h2">{phone.brand} {phone.model}</h1>
                                     <p className="h3 py-2">{phone.price}$</p>
 
                                     <ul className="list-inline">
@@ -62,7 +64,7 @@ export default function Details() {
                                     <h6>Details: {phone.details}</h6>
                                     <ul className="list-inline">
                                         <li className="list-inline-item">
-                                            <h6>Avaliable Color :</h6>
+                                            <h6>Available Color :</h6>
                                         </li>
                                         <li className="list-inline-item">
                                             <p className="text-muted">
@@ -75,7 +77,7 @@ export default function Details() {
                                             <button type="submit" className="btn btn-success btn-lg" name="submit" value="buy">Buy</button>
                                         </div>
                                         <div className="col d-grid">
-                                            <button type="submit" className="btn" id='favou' name="submit" value="buy">Favourites: 0</button>
+                                            <button type="submit" className="btn" id='favou' name="submit" value="buy">Favorites: 0</button>
                                         </div>
                                     </div>
                                 </div>
@@ -89,6 +91,9 @@ export default function Details() {
                                 <p>{comment.username}: {comment.text}</p>
                             </div>
                         ))}
+                        {comments.length === 0 && (
+                            <p className="no-articles">No comments yet</p>
+                        )}
                     </div>
                     <div className='Add-com'>
                         <form onSubmit={addCommentHandler}>
@@ -103,12 +108,7 @@ export default function Details() {
                         </form>
                     </div>
                 </div>
-
             </section>
-
         </>
-    )
-
-
-
+    );
 }

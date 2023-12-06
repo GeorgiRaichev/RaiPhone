@@ -24,10 +24,9 @@ export const create = async (phoneId, username, text) => {
 
 }
 
-export const getAll = async () => {
-
-    const result = await requset.request('GET', baseUrl);
-    return Object.values(result);
+export const getAll = async (phoneId) => {
+    const result = await requset.request('GET', `${baseUrl}`);
+    return Object.values(result).filter(comment => comment.phoneId === phoneId);
 
 
 }
