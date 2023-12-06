@@ -2,12 +2,13 @@ import * as requset from '../lib/request';
 
 const baseUrl = 'http://localhost:3030/jsonstore/comments';
 
-export const create = async (phoneId,username,text) => {
+export const create = async (phoneId, username, text) => {
     const data = {
         phoneId,
         username,
         text
     }
+
     const response = await fetch(`${baseUrl}`, {
         method: 'POST',
         headers: {
@@ -16,6 +17,17 @@ export const create = async (phoneId,username,text) => {
         body: JSON.stringify(data)
     });
     const newComment = await response.json();
-
     return newComment;
-}  
+
+
+
+
+}
+
+export const getAll = async () => {
+
+    const result = await requset.request('GET', baseUrl);
+    return Object.values(result);
+
+
+}

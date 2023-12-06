@@ -5,25 +5,29 @@ import * as commentService from '../services/commentService'
 
 export default function Details() {
     const [phone, setPhone] = useState({});
+    const [comments, setComments] = useState([]);
     const { phoneId } = useParams();
 
     useEffect(() => {
         phoneService.getOne(phoneId)
             .then(setPhone)
+        commentService.getAll()
+            .then(setComments);
     }, [phoneId]);
 
 
     const addCommentHandler = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
+
         const newComment = await commentService.create(
             phoneId,
             formData.get('username'),
             formData.get('comment')
         );
-        console.log(newComment);
+        setComments(state => [...state, newComment]);
     }
-    
+
     return (
         <>
             <section className="bg-light">
@@ -80,19 +84,21 @@ export default function Details() {
                     </div>
                     <b className='com'>Comments</b>
                     <div className='Comments-container'>
-                        <div className='comment'>
-                            <p>Content: I rate this product hightly</p>
-                        </div>
+                        {comments.map(comment => (
+                            <div key={comment._id} className='comment'>
+                                <p>{comment.username}: {comment.text}</p>
+                            </div>
+                        ))}
                     </div>
                     <div className='Add-com'>
                         <form onSubmit={addCommentHandler}>
-                            <div className="add-commentText">                              
+                            <div className="add-commentText">
                                 <label className='lbladd'>Add new comment</label><br />
                                 <input type="text" name='username' placeholder='username' />
-                                <textarea name="comment" id="comment" cols="30" rows="10"className='input-add'></textarea>
+                                <textarea name="comment" id="comment" cols="30" rows="10" className='input-add'></textarea>
                             </div>
                             <div className="add-commentBtn">
-                                <input type="submit"className="btn" id='addbtnn' value="Add comment" />
+                                <input type="submit" className="btn" id='addbtnn' value="Add comment" />
                             </div>
                         </form>
                     </div>
