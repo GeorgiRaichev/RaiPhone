@@ -46,6 +46,8 @@ function App() {
       const result = await authService.register(values.email, values.password, values.username);
       setAuth(result);
       navigate('/');
+    }else{
+      console.log('Not matching passwords');
     }
 
 
