@@ -32,3 +32,20 @@ export const register = async (email, password, username) => {
     const result = await response.json();
     return result;
 }
+
+export const logout = async () => {
+    const token = sessionStorage.getItem('accessToken');
+    const response = await fetch(`${baseUrl}/logout`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Authorization': token
+        },
+        body: JSON.stringify({
+            email,
+            password,
+        }),
+
+    });
+
+}

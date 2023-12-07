@@ -9,6 +9,7 @@ import Add from './components/Add';
 import Details from './components/Details';
 import Register from './components/Register';
 import Login from './components/Login';
+import Logout from './components/Logout';
 import Error from './components/Error';
 import AuthContext from './contexts/authContexts';
 import * as authService from './services/authService';
@@ -30,13 +31,16 @@ import './assets/css/add.css';
 
 
 
+
 function App() {
   const navigate = useNavigate();
   const [auth, setAuth] = useState({});
+
+
   const loginSubmitHandler = async (values) => {
     const result = await authService.login(values.email, values.password);
-    console.log(result);
     setAuth(result);
+    localStorage.setItem('accessToken', result.accessToken);
     navigate('/')
   }
 
@@ -45,23 +49,28 @@ function App() {
     if (values.password === values.confirmPassword) {
       const result = await authService.register(values.email, values.password, values.username);
       setAuth(result);
+      localStorage.setItem('accessToken', result.accessToken);
       navigate('/');
-    }else{
+    } else {
       console.log('Not matching passwords');
     }
 
 
   }
 
-
+  const logoutHandler = () => {
+    setAuth({});
+    localStorage.removeItem('accessToken');
+  }
 
   const [count, setCount] = useState(0)
   const values = {
     loginSubmitHandler,
     registerSubmitHandler,
+    logoutHandler,
     username: auth.username,
     email: auth.email,
-    isAuthenticated: !!auth.email,
+    isAuthenticated: !!auth.accessToken,
   }
   return (
     <AuthContext.Provider value={values}>
@@ -75,6 +84,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/add" element={<Add />} />
           <Route path="/phones/:phoneId" element={<Details />} />
+          <Route path="/logout" element={<Logout />} />
           <Route path="*" element={<Error />} />
         </Routes>
         <Footer />
