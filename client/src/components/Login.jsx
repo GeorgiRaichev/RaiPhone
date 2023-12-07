@@ -17,7 +17,7 @@ export default function Login() {
                 </div>
                 <form onSubmit={onSubmit}>
                     <div className="field">
-                        <input type="email" name="email" onChange={onChange} value={values.email} />
+                        <input type="email" name="email"  onChange={onChange} value={values.email} />
                             <label>Email Address</label>
                     </div>
                     <div className="field">
@@ -28,7 +28,7 @@ export default function Login() {
                         <input type="submit" value="Login"/>
                     </div>
                     <div className="signup-link">
-                        Not a member? <a href="#">Sign up now</a>
+                        Not a member? <a href="/register">Sign up now</a>
                     </div>
                 </form>
             </div>

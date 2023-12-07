@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './components/Home';
@@ -10,6 +10,8 @@ import Details from './components/Details';
 import Register from './components/Register';
 import Login from './components/Login';
 import Error from './components/Error';
+import AuthContext from './contexts/authContexts';
+import * as authService from './services/authService';
 import './assets/css/shop.css'
 import './assets/css/bootstrap.min.css';
 import './assets/css/custom.css';
@@ -29,14 +31,38 @@ import './assets/css/add.css';
 
 
 function App() {
+  const navigate = useNavigate();
   const [auth, setAuth] = useState({});
-  const loginSubmitHandler = (values) => {
-    console.log(values);
+  const loginSubmitHandler = async (values) => {
+    const result = await authService.login(values.email, values.password);
+    console.log(result);
+    setAuth(result);
+    navigate('/')
   }
-  const [count, setCount] = useState(0)
 
+
+  const registerSubmitHandler = async (values) => {
+    if (values.password === values.confirmPassword) {
+      const result = await authService.register(values.email, values.password, values.username);
+      setAuth(result);
+      navigate('/');
+    }
+
+
+  }
+
+
+
+  const [count, setCount] = useState(0)
+  const values = {
+    loginSubmitHandler,
+    registerSubmitHandler,
+    username: auth.username,
+    email: auth.email,
+    isAuthenticated: !!auth.email,
+  }
   return (
-    <AuthContext.Provider value={{loginSubmitHandler}}>
+    <AuthContext.Provider value={values}>
       <>
         <Header />
         <Routes>

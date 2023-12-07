@@ -36,7 +36,9 @@
     width: 500px;
     margin-left: 400px;
 }
-
+.usernam{
+    margin-top: 5px;
+}
 .add-commentBtn {
     margin-top: 20px;
 

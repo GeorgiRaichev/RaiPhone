@@ -11,7 +11,6 @@ export default function useForm(submitHandler,initialValues) {
     }
     
     const onSubmit = (e) => {
-        console.log('onsubmm');
         e.preventDefault();
         submitHandler(values);
     }
