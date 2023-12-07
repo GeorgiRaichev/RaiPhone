@@ -29,6 +29,10 @@ import './assets/css/add.css';
 
 
 function App() {
+  const [auth, setAuth] = useState({});
+  const loginSubmitHandler = (values) => {
+    console.log(values);
+  }
   const [count, setCount] = useState(0)
 
   return (
@@ -39,9 +43,9 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login loginSubmitHandler={loginSubmitHandler} />} />
         <Route path="/add" element={<Add />} />
-        <Route path="/phones/:phoneId" element={<Details/>} />
+        <Route path="/phones/:phoneId" element={<Details />} />
         <Route path="*" element={<Error />} />
       </Routes>
       <Footer />
