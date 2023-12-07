@@ -11,9 +11,11 @@ export default function Logout() {
             .then(()=>{
                 logoutHandler();
                 navigate('/');
-            }
-            )
-            .catch(()=>navigate('/'));
+            }).catch(() => {
+                logoutHandler();
+                navigate('/');
+            });
+            
     },[]);
     return null;
 }

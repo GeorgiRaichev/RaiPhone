@@ -27,6 +27,7 @@ import './assets/css/Error.css';
 import './assets/css/login.css';
 import './assets/css/register.css';
 import './assets/css/add.css';
+import ErrorBoundary from './components/ErrorBoundary';
 
 
 
@@ -76,6 +77,7 @@ function App() {
     isAuthenticated: !!auth.accessToken,
   }
   return (
+    <ErrorBoundary>
     <AuthContext.Provider value={values}>
       <>
         <Header />
@@ -93,6 +95,7 @@ function App() {
         <Footer />
       </>
     </AuthContext.Provider>
+    </ErrorBoundary>
   )
 }
 
