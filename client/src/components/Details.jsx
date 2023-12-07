@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import AuthContext from '../contexts/authContexts';
 import { useParams } from 'react-router-dom';
 import * as phoneService from '../services/phoneService';
 import * as commentService from '../services/commentService';
 
 export default function Details() {
+    const { username } = useContext(AuthContext)
     const [phone, setPhone] = useState({});
     const [comments, setComments] = useState([]);
     const { phoneId } = useParams();
-
+    const {
+        isAuthenticated
+    } = useContext(AuthContext);
     useEffect(() => {
         phoneService.getOne(phoneId)
             .then(setPhone);
@@ -21,12 +25,9 @@ export default function Details() {
 
         const newComment = await commentService.create(
             phoneId,
-            formData.get('username'),
             formData.get('comment')
         );
-        setComments(state => [...state, newComment]);
-
-        // Reset the form
+        setComments(state => [...state, { ...newComment, owner: { username } }]);
         e.target.reset();
     };
 
@@ -86,27 +87,27 @@ export default function Details() {
                     </div>
                     <b className='com'>Comments</b>
                     <div className='Comments-container'>
-                        {comments.map(comment => (
-                            <div key={comment._id} className='comment'>
-                                <p>{comment.username}: {comment.text}</p>
+                        {comments.map(({ _id, text, owner: { username } }) => (
+                            <div key={_id} className='comment'>
+                                <p>{username}: {text}</p>
                             </div>
                         ))}
                         {comments.length === 0 && (
                             <p className="no-articles">No comments yet</p>
                         )}
                     </div>
-                    <div className='Add-com'>
+                    {isAuthenticated && (<div className='Add-com'>
                         <form onSubmit={addCommentHandler}>
                             <div className="add-commentText">
                                 <label className='lbladd'>Add new comment</label><br />
-                                <input type="text" name='username' placeholder='username' />
                                 <textarea name="comment" id="comment" cols="30" rows="10" className='input-add'></textarea>
                             </div>
                             <div className="add-commentBtn">
                                 <input type="submit" className="btn" id='addbtnn' value="Add comment" />
                             </div>
                         </form>
-                    </div>
+                    </div>)}
+
                 </div>
             </section>
         </>

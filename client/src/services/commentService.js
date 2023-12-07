@@ -1,32 +1,24 @@
-import * as requset from '../lib/request';
+import * as request from '../lib/request';
 
-const baseUrl = 'http://localhost:3030/jsonstore/comments';
+const baseUrl = 'http://localhost:3030/data/comments';
 
-export const create = async (phoneId, username, text) => {
+export const create = async (phoneId, text) => {
     const data = {
         phoneId,
-        username,
-        text
+        text,
     }
 
-    const response = await fetch(`${baseUrl}`, {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    });
-    const newComment = await response.json();
-    return newComment;
-
-
-
-
+    const response = await request.post(baseUrl,data);
+    return response;
 }
 
 export const getAll = async (phoneId) => {
-    const result = await requset.request('GET', `${baseUrl}`);
-    return Object.values(result).filter(comment => comment.phoneId === phoneId);
+    const query = new URLSearchParams({
+        where: `phoneId="${phoneId}"`,
+        load: `owner=_ownerId:users`,
+    });
+    const result = await request.get(`${baseUrl}?${query}`);
+    return result;
 
 
 }
