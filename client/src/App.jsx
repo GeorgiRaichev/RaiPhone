@@ -12,6 +12,7 @@ import Login from './components/Login';
 import Logout from './components/Logout';
 import Error from './components/Error';
 import AuthContext from './contexts/authContexts';
+import Edit from './components/Edit';
 import * as authService from './services/authService';
 import './assets/css/shop.css'
 import './assets/css/bootstrap.min.css';
@@ -27,7 +28,7 @@ import './assets/css/Error.css';
 import './assets/css/login.css';
 import './assets/css/register.css';
 import './assets/css/add.css';
-import ErrorBoundary from './components/ErrorBoundary';
+import AuthGuard from './components/guards/AuthGuard';
 
 
 
@@ -74,10 +75,11 @@ function App() {
     logoutHandler,
     username: auth.username,
     email: auth.email,
+    userId: auth._id,
     isAuthenticated: !!auth.accessToken,
+    
   }
   return (
-    <ErrorBoundary>
     <AuthContext.Provider value={values}>
       <>
         <Header />
@@ -87,15 +89,15 @@ function App() {
           <Route path="/shop" element={<Shop />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/add" element={<Add />} />
+          <Route path="/add" element={<AuthGuard><Add /></AuthGuard>} />
           <Route path="/phones/:phoneId" element={<Details />} />
-          <Route path="/logout" element={<Logout />} />
+          <Route path="/phones/:phoneId/edit" element={<AuthGuard><Edit /></AuthGuard>} />
+          <Route path="/logout" element={<AuthGuard><Logout /></AuthGuard>} />
           <Route path="*" element={<Error />} />
         </Routes>
         <Footer />
       </>
     </AuthContext.Provider>
-    </ErrorBoundary>
   )
 }
 

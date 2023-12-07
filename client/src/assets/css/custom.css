@@ -2,11 +2,20 @@
     height: 325px;
 }
 
-#favou {
+#delete {
     background-color: brown;
     color: white;
 }
-
+#edit {
+    margin-right: 2px;
+    background-color: rgb(42, 165, 153);
+    color: white;
+    margin-bottom: 1px;
+  
+}
+.btnsEdit{
+    
+}
 .Comments-container {
     background-color: white;
     border-style: dashed;

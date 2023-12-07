@@ -18,8 +18,6 @@ export default function PhoneListItem({
 
                 </div>
             </Link>
-            <button className='EditBtn'>Edit</button>
-            <button className='DelBtn'>Delete</button>
         </div>
 
     );

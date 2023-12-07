@@ -19,3 +19,11 @@ export const create = async (phoneData) => {
     return result;
 }
 
+export const edit = async (phoneId, phoneData) => {
+    const result = await request.put(`${baseUrl}/${phoneId}`, phoneData);
+
+    return result;
+};
+
+export const remove = async (phoneId) => request.del(`${baseUrl}/${phoneId}`);
+

@@ -1,14 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
 import AuthContext from '../contexts/authContexts';
-import { useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import * as phoneService from '../services/phoneService';
 import * as commentService from '../services/commentService';
-
+import { Link } from 'react-router-dom';
 export default function Details() {
-    const { username } = useContext(AuthContext)
+    const { username, userId } = useContext(AuthContext);
     const [phone, setPhone] = useState({});
     const [comments, setComments] = useState([]);
     const { phoneId } = useParams();
+    const navigate = useNavigate();
     const {
         isAuthenticated
     } = useContext(AuthContext);
@@ -18,6 +19,29 @@ export default function Details() {
         commentService.getAll(phoneId)
             .then(setComments);
     }, [phoneId]);
+
+
+    const deleteButtonClickHandler = async () => {
+        const hasConfirmed = confirm(`Are you sure you want to delete ${`${phone.brand} ${phone.model}`}`);
+        if (hasConfirmed) {
+            await phoneService.remove(phoneId);
+            navigate('/shop');
+        }
+
+    }
+    const buyButtonClickHandler = async () => {
+        if (isAuthenticated) {
+            const hasConfirmed = confirm(`Are you sure you want to buy ${`${phone.brand} ${phone.model}`}`);
+            if (hasConfirmed) {
+                await phoneService.remove(phoneId);
+                navigate('/shop');
+            }
+        } else {
+            navigate('/login');
+        }
+
+
+    }
 
     const addCommentHandler = async (e) => {
         e.preventDefault();
@@ -30,20 +54,30 @@ export default function Details() {
         setComments(state => [...state, { ...newComment, owner: { username } }]);
         e.target.reset();
     };
-
     return (
         <>
             <section className="bg-light">
                 <div className="container pb-5">
+                    <div className='btnsEdit'>
+                        {userId === phone._ownerId && (
+                            <>
+                                <Link to={`/phones/${phoneId}/edit`} className="btn" id='edit'>Edit</Link>
+                                <button className="btn" id='delete' onClick={deleteButtonClickHandler}>Delete</button>
+                            </>
+                        )}
+                    </div>
                     <div className="row">
                         <div className="col-lg-5 mt-5">
+
                             <div className="card mb-3">
+
                                 <img
                                     className="image1 "
                                     src={phone.imageUrl}
                                     alt="Card image cap"
                                     id="product-detail"
                                 />
+
                             </div>
                         </div>
                         <div className="col-lg-7 mt-5">
@@ -75,10 +109,10 @@ export default function Details() {
                                     </ul>
                                     <div className="row pb-3">
                                         <div className="col d-grid">
-                                            <button type="submit" className="btn btn-success btn-lg" name="submit" value="buy">Buy</button>
+                                            <button className="btn btn-success btn-lg" id='buyy' onClick={buyButtonClickHandler}>Buy</button>
                                         </div>
                                         <div className="col d-grid">
-                                            <button type="submit" className="btn" id='favou' name="submit" value="buy">Favorites: 0</button>
+
                                         </div>
                                     </div>
                                 </div>
