@@ -34,7 +34,10 @@ import './assets/css/add.css';
 
 function App() {
   const navigate = useNavigate();
-  const [auth, setAuth] = useState({});
+  const [auth, setAuth] = useState(() => {
+    localStorage.removeItem('accessToken');
+    return {};
+  });
 
 
   const loginSubmitHandler = async (values) => {
