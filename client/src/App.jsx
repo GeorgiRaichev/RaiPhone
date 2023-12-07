@@ -36,20 +36,22 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/shop" element={<Shop />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login loginSubmitHandler={loginSubmitHandler} />} />
-        <Route path="/add" element={<Add />} />
-        <Route path="/phones/:phoneId" element={<Details />} />
-        <Route path="*" element={<Error />} />
-      </Routes>
-      <Footer />
-    </>
+    <AuthContext.Provider value={{loginSubmitHandler}}>
+      <>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/add" element={<Add />} />
+          <Route path="/phones/:phoneId" element={<Details />} />
+          <Route path="*" element={<Error />} />
+        </Routes>
+        <Footer />
+      </>
+    </AuthContext.Provider>
   )
 }
 
