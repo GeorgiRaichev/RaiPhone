@@ -3,7 +3,7 @@
   margin: 20px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  
 
 }
 
@@ -59,7 +59,7 @@
   flex-basis: calc(25% - 40px);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out;
-
+  margin-left: 27px;
 }
 
 .text-warning {
