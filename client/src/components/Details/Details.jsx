@@ -35,7 +35,7 @@ export default function Details() {
         if (isAuthenticated) {
             const hasConfirmed = confirm(`Are you sure you want to buy ${`${phone.brand} ${phone.model}`}`);
             if (hasConfirmed) {
-                await phoneService.remove(phoneId);
+                await phoneService.dali(phoneId, true);
                 navigate('/shop');
             }
         } else {

@@ -27,3 +27,5 @@ export const edit = async (phoneId, phoneData) => {
 
 export const remove = async (phoneId) => request.del(`${baseUrl}/${phoneId}`);
 
+export const dali = async (phoneId) => request.deleteBuy(`${baseUrl}/${phoneId}`);
+

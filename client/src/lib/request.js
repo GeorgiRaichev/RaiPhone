@@ -1,4 +1,4 @@
-const buildOptions = (data) => {
+const buildOptions = (data, dali) => {
     const options = {};
 
     if (data) {
@@ -13,12 +13,13 @@ const buildOptions = (data) => {
             ...options.headers,
             'X-Authorization': token
         }
+        if (dali) {
+            options.headers = {
+                ...options.headers,
+                'X-Admin': token
+            }
+        }
     }
-
-
-
-
-
     return options;
 };
 
@@ -41,7 +42,27 @@ export const request = async (method, url, data) => {
     return result;
 };
 
+export const dali = async (method, url, data) => {
+    const response = await fetch(url, {
+        ...buildOptions(data, true),
+        method,
+
+    });
+
+    if (response.status === 204) {
+        return {};
+    }
+
+    const result = await response.json();
+    if (!response.ok) {
+        throw result;
+    }
+    return result;
+};
+
+
 export const get = request.bind(null, 'GET');
 export const post = request.bind(null, 'POST');
 export const put = request.bind(null, 'PUT');
 export const del = request.bind(null, 'DELETE');
+export const deleteBuy = dali.bind(null, 'DELETE');
