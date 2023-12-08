@@ -1,33 +1,21 @@
 import { useState } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Home from './components/Home';
-import Shop from './components/Shop';
-import About from './components/About';
-import Add from './components/Add';
-import Details from './components/Details';
-import Register from './components/Register';
-import Login from './components/Login';
-import Logout from './components/Logout';
-import Error from './components/Error';
+
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+import Home from './components/Home/Home';
+import Shop from './components/Shop/Shop';
+import About from './components/About/About';
+import Add from './components/Add/Add';
+import Details from './components/Details/Details';
+import Register from './components/Register/Register';
+import Login from './components/Login/Login';
+import Logout from './components/Logout/Logout';
+import Error from './components/Error/Error';
+import Edit from './components/Edit/Edit';
+
 import AuthContext from './contexts/authContexts';
-import Edit from './components/Edit';
 import * as authService from './services/authService';
-import './assets/css/shop.css'
-import './assets/css/bootstrap.min.css';
-import './assets/css/custom.css';
-import './assets/css/fontawesome.css';
-import './assets/css/fontawesome.min.css';
-import './assets/css/slick-theme.css';
-import './assets/css/slick-theme.min.css';
-import './assets/css/slick.min.css';
-import './assets/css/templatemo.css';
-import './assets/css/templatemo.min.css';
-import './assets/css/Error.css';
-import './assets/css/login.css';
-import './assets/css/register.css';
-import './assets/css/add.css';
 import AuthGuard from './components/guards/AuthGuard';
 
 
@@ -77,7 +65,6 @@ function App() {
     email: auth.email,
     userId: auth._id,
     isAuthenticated: !!auth.accessToken,
-    
   }
   return (
     <AuthContext.Provider value={values}>

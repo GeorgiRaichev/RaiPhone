@@ -1,0 +1,68 @@
+.er {
+    padding: 0;
+    margin: 0;
+    background: #f0f0f0;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.buutn1 {
+    text-align: center;
+    margin-bottom: 30px;
+    
+}
+
+.text {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 40px;
+}
+
+.error-text {
+    text-align: center;
+    padding: 20px;
+    font-family: Cursive;
+}
+
+.error {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
+    text-decoration: none;
+    padding: 15px;
+    background: #6200ee;
+    color: #fff;
+    border-radius: 10px;
+}
+body,
+ul,
+li,
+p,
+a,
+label,
+input,
+div {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px !important;
+  font-weight: 300 !important;
+}
+
+.h1 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 48px !important;
+  font-weight: 200 !important;
+}
+
+.h2 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 30px !important;
+  font-weight: 300;
+}
+
+.h3 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 22px !important;
+}

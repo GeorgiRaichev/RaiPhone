@@ -1,0 +1,167 @@
+.s-container {
+    width: 97%;
+    margin: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+
+.EditBtn {
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #50c878, #41d081);
+    position: relative;
+    left: 240px;
+}
+
+.DelBtn {
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color:#e44d26;
+    position: relative;
+    left: 240px;
+}
+
+.no-articles {
+    margin-bottom: 400px;
+}
+
+.All-prod {
+    text-align: center;
+    color: #e44d26;
+    margin-top: 20px;
+    margin-bottom: 50px;
+
+}
+.shop-top-menu a:hover {
+    color: #69bb7e !important;
+  }
+.product {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 10px;
+    width: 300px;
+    flex-basis: calc(25% - 40px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+
+}
+.text-warning {
+    color: #ede861 !important;
+  }
+  
+  .text-muted {
+    color: #bcbcbc !important;
+  }
+  
+  .text-success {
+    color: #59ab6e !important;
+  }
+  
+  .text-light {
+    color: #cfd6e1 !important;
+  }
+  
+  .bg-dark {
+    background-color: #212934 !important;
+  }
+  
+  .bg-light {
+    background-color: #e9eef5 !important;
+  }
+  
+  .bg-black {
+    background-color: #1d242d !important;
+  }
+  
+  .bg-success {
+    background-color: #59ab6e !important;
+  }
+  
+  .btn-success {
+    background-color: #59ab6e !important;
+    border-color: #56ae6c !important;
+  }
+  
+  .pagination .page-link:hover {
+    color: #000;
+  }
+  body,
+ul,
+li,
+p,
+a,
+label,
+input,
+div {
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px !important;
+  font-weight: 300 !important;
+}
+
+.h1 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 48px !important;
+  font-weight: 200 !important;
+}
+
+.h2 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 30px !important;
+  font-weight: 300;
+}
+
+.h3 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 22px !important;
+}
+  .pagination .page-link:hover,
+  .pagination .page-link.active {
+    background-color: #69bb7e;
+    color: #fff;
+  }
+
+.product:hover {
+    transform: scale(1.05);
+}
+
+.product img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 15px;
+}
+
+.product-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.product-price {
+    color: #e44d26;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.product-description {
+    font-size: 14px;
+    color: #555;
+    margin-top: 10px;
+}

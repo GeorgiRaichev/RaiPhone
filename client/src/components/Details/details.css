@@ -1,0 +1,118 @@
+.image1 {
+    height: 325px;
+}
+
+#delete {
+    background-color: brown;
+    color: white;
+}
+#edit {
+    margin-right: 2px;
+    background-color: rgb(42, 165, 153);
+    color: white;
+    margin-bottom: 1px;
+  
+}
+
+.Comments-container {
+    background-color: white;
+    border-style: dashed;
+}
+.text-warning {
+    color: #ede861 !important;
+  }
+  
+  .text-muted {
+    color: #bcbcbc !important;
+  }
+  
+  .text-success {
+    color: #59ab6e !important;
+  }
+  
+  .text-light {
+    color: #cfd6e1 !important;
+  }
+  
+  .bg-dark {
+    background-color: #212934 !important;
+  }
+  
+  .bg-light {
+    background-color: #e9eef5 !important;
+  }
+  
+  .bg-black {
+    background-color: #1d242d !important;
+  }
+  
+  .bg-success {
+    background-color: #59ab6e !important;
+  }
+  
+  .btn-success {
+    background-color: #59ab6e !important;
+    border-color: #56ae6c !important;
+  }
+  
+  .pagination .page-link:hover {
+    color: #000;
+  }
+  
+  .pagination .page-link:hover,
+  .pagination .page-link.active {
+    background-color: #69bb7e;
+    color: #fff;
+  }
+.comment {
+    color: white;
+    background-color: rgb(117, 81, 136);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 10px;
+    width: 300px;
+    flex-basis: calc(25% - 40px);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.Add-com {
+    margin-top: 30px;
+    text-align: center;
+    background-color: rgb(117, 81, 136);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 10px;
+    width: 500px;
+    margin-left: 400px;
+}
+.usernam{
+    margin-top: 5px;
+}
+.add-commentBtn {
+    margin-top: 20px;
+
+}
+
+.input-add{
+    width: 300px;
+    height: 200px;
+    font-size: 20px;
+    margin-top: 15px;
+
+}
+
+.add-commentBtn {
+    margin-bottom: 10px;
+}
+
+.lbladd {
+    color: white;
+    margin-bottom: 5px;
+}
+#addbtnn{
+    background-color: rgb(181, 166, 196);
+    color:rgb(46, 46, 46);
+}
