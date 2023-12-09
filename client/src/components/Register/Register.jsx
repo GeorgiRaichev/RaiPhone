@@ -15,12 +15,20 @@ const RegisterFormKeys = {
 export default function Register() {
   const { registerSubmitHandler } = useContext(AuthContext);
   const [passwordMatch, setPasswordMatch] = useState(true);
+  const [emailMatch, setEmailMatch] = useState(true);
   const { values, onChange, onSubmit } = useForm((formValues) => {
-    if (formValues[RegisterFormKeys.Password] === formValues[RegisterFormKeys.ConfirmPassword]) {
+    const ifPassowrds = formValues[RegisterFormKeys.Password] === formValues[RegisterFormKeys.ConfirmPassword];
+    const ifEmail = formValues[RegisterFormKeys.Email].includes('@');
+    if (ifPassowrds && ifEmail) {
+      setPasswordMatch(true);
+      setEmailMatch(true);
       registerSubmitHandler(formValues);
+
     } else {
-      setPasswordMatch(false);
+      !ifPassowrds ? setPasswordMatch(false) : setPasswordMatch(true);
+      !ifEmail ? setEmailMatch(false) : setEmailMatch(true);
     }
+
   },
     {
       [RegisterFormKeys.Email]: '',
@@ -44,7 +52,7 @@ export default function Register() {
               </div>
               <div className="input-box">
                 <span className="details">Username</span>
-                <input type="text" placeholder="Enter your username" name="username" onChange={onChange} values={values[RegisterFormKeys.Username]} required/>
+                <input type="text" placeholder="Enter your username" name="username" onChange={onChange} values={values[RegisterFormKeys.Username]} required />
               </div>
               <div className="input-box">
                 <span className="details" >Email</span>
@@ -52,17 +60,20 @@ export default function Register() {
               </div>
               <div className="input-box">
                 <span className="details">Phone Number</span>
-                <input type="text" placeholder="Enter your number" required="" />
+                <input type="text" placeholder="Enter your number" name="phoneNumber" required="" />
               </div>
               <div className="input-box">
                 <span className="details">Password</span>
-                <input type="text" placeholder="Enter your password" name="password" onChange={onChange} values={values[RegisterFormKeys.Password]} required/>
+                <input type="text" placeholder="Enter your password" name="password" onChange={onChange} values={values[RegisterFormKeys.Password]} required />
               </div>
               <div className="input-box">
                 <span className="details">Confirm Password</span>
                 <input type="text" placeholder="Confirm your password" name="confirmPassword" onChange={onChange} values={values[RegisterFormKeys.ConfirmPassword]} required />
               </div>
-              {!passwordMatch && (<p>Passwords don't match!</p>)}
+              <div>
+                {!passwordMatch && (<p>Passwords don't match!</p>)}
+                {!emailMatch && (<p>Email must include @!</p>)}
+              </div>
             </div>
             <div className="gender-details">
               <input type="radio" name="gender" id="dot-1" />
