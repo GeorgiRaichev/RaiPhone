@@ -19,11 +19,11 @@ export default function Login() {
                 </div>
                 <form onSubmit={onSubmit}>
                     <div className="field">
-                        <input type="email" name="email"  onChange={onChange} value={values.email} />
+                        <input type="email" name="email"  onChange={onChange} value={values.email} required/>
                             <label>Email Address</label>
                     </div>
                     <div className="field">
-                        <input type="password" name="password" onChange={onChange} value={values.password} />
+                        <input type="password" name="password" onChange={onChange} value={values.password} required />
                             <label>Password</label>
                     </div>
                     <div className="field">
