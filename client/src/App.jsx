@@ -19,6 +19,7 @@ import * as authService from './services/authService';
 import AuthGuard from './components/guards/AuthGuard';
 
 function App() {
+  const [logInMistake, setLoginMistake] = useState(null);
   const navigate = useNavigate();
   const [auth, setAuth] = useState(() => {
     localStorage.removeItem('accessToken');
@@ -28,10 +29,12 @@ function App() {
   const loginSubmitHandler = async (values) => {
     try {
       const result = await authService.login(values.email, values.password);
+      setLoginMistake(null);
       setAuth(result);
       localStorage.setItem('accessToken', result.accessToken);
       navigate('/');
     } catch (error) {
+      setLoginMistake(error.message);
       console.error('Error during login:', error);
      
     }
@@ -83,7 +86,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login message ={logInMistake}/>} />
           <Route path="/add" element={<AuthGuard><Add /></AuthGuard>} />
           <Route path="/phones/:phoneId" element={<Details />} />
           <Route path="/phones/:phoneId/edit" element={<AuthGuard><Edit /></AuthGuard>} />
