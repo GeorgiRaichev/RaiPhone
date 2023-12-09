@@ -5,6 +5,9 @@
   box-sizing: border-box;
   font-family: 'Poppins',sans-serif;
 }
+#cnfPsw{
+ margin-left: 21px;
+}
 .reg-bod{
   height: 100vh;
   display: flex;

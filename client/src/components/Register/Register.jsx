@@ -64,11 +64,11 @@ export default function Register() {
               </div>
               <div className="input-box">
                 <span className="details">Password</span>
-                <input type="text" placeholder="Enter your password" name="password" onChange={onChange} values={values[RegisterFormKeys.Password]} required />
+                <input type="text" placeholder="Enter your password"  name="password" onChange={onChange} values={values[RegisterFormKeys.Password]} required />
               </div>
               <div className="input-box">
-                <span className="details">Confirm Password</span>
-                <input type="text" placeholder="Confirm your password" name="confirmPassword" onChange={onChange} values={values[RegisterFormKeys.ConfirmPassword]} required />
+                <span className="details" id="cnfPsw" >Confirm Password</span>
+                <input type="text" placeholder="Confirm your password" id="cnfPsw" name="confirmPassword" onChange={onChange} values={values[RegisterFormKeys.ConfirmPassword]} required />
               </div>
               <div>
                 {!passwordMatch && (<p>Passwords don't match!</p>)}
