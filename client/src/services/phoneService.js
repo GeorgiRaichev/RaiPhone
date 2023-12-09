@@ -55,7 +55,7 @@ export const dali = async (phoneId) => {
     try {
         return await request.deleteBuy(`${baseUrl}/${phoneId}`);
     } catch (error) {
-        console.error(`Error in delete (dali) phone (${phoneId}) request:`, error);
+        console.error(`Error in delete  phone (${phoneId}) request:`, error);
         throw error; 
     }
 };
