@@ -10,7 +10,7 @@ export default function Login(message) {
         email: '',
         password: '',
     });
-console.log(message);
+
     return (
         <div className="whole">
             <div className="wrapper">
