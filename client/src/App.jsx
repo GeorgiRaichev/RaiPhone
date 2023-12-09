@@ -18,10 +18,6 @@ import AuthContext from './contexts/authContexts';
 import * as authService from './services/authService';
 import AuthGuard from './components/guards/AuthGuard';
 
-
-
-
-
 function App() {
   const navigate = useNavigate();
   const [auth, setAuth] = useState(() => {
@@ -29,34 +25,45 @@ function App() {
     return {};
   });
 
-
   const loginSubmitHandler = async (values) => {
-    const result = await authService.login(values.email, values.password);
-    setAuth(result);
-    localStorage.setItem('accessToken', result.accessToken);
-    navigate('/')
-  }
-
-
-  const registerSubmitHandler = async (values) => {
-    if (values.password === values.confirmPassword) {
-      const result = await authService.register(values.email, values.password, values.username);
+    try {
+      const result = await authService.login(values.email, values.password);
       setAuth(result);
       localStorage.setItem('accessToken', result.accessToken);
       navigate('/');
-    } else {
-      console.log('Not matching passwords');
+    } catch (error) {
+      console.error('Error during login:', error);
+     
     }
+  };
 
-
-  }
+  const registerSubmitHandler = async (values) => {
+    try {
+      if (values.password === values.confirmPassword) {
+        const result = await authService.register(values.email, values.password, values.username);
+        setAuth(result);
+        localStorage.setItem('accessToken', result.accessToken);
+        navigate('/');
+      } else {
+        console.log('Not matching passwords');
+      }
+    } catch (error) {
+      console.error('Error during registration:', error);
+      
+    }
+  };
 
   const logoutHandler = () => {
-    setAuth({});
-    localStorage.removeItem('accessToken');
-  }
+    try {
+      setAuth({});
+      localStorage.removeItem('accessToken');
+    } catch (error) {
+      console.error('Error during logout:', error);
+      
+    }
+  };
 
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
   const values = {
     loginSubmitHandler,
     registerSubmitHandler,
@@ -65,7 +72,8 @@ function App() {
     email: auth.email,
     userId: auth._id,
     isAuthenticated: !!auth.accessToken,
-  }
+  };
+
   return (
     <AuthContext.Provider value={values}>
       <>
@@ -85,7 +93,7 @@ function App() {
         <Footer />
       </>
     </AuthContext.Provider>
-  )
+  );
 }
 
-export default App
+export default App;

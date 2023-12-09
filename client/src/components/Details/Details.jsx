@@ -24,30 +24,41 @@ export default function Details() {
 
 
     const deleteButtonClickHandler = async () => {
-        const hasConfirmed = confirm(`Are you sure you want to delete ${`${phone.brand} ${phone.model}`}`);
-        if (hasConfirmed) {
-            await phoneService.remove(phoneId);
-            navigate('/shop');
+        try {
+            const hasConfirmed = confirm(`Are you sure you want to delete ${`${phone.brand} ${phone.model}`}`);
+            if (hasConfirmed) {
+                await phoneService.remove(phoneId);
+                navigate('/shop');
+            }
+        } catch (error) {
+            console.log(error);
         }
+
 
     }
     const buyButtonClickHandler = async () => {
-        if (isAuthenticated) {
-            const hasConfirmed = confirm(`Are you sure you want to buy ${`${phone.brand} ${phone.model}`}`);
-            if (hasConfirmed) {
-                await phoneService.dali(phoneId, true);
-                navigate('/shop');
+        try {
+            if (isAuthenticated) {
+                const hasConfirmed = confirm(`Are you sure you want to buy ${`${phone.brand} ${phone.model}`}`);
+                if (hasConfirmed) {
+                    await phoneService.dali(phoneId, true);
+                    navigate('/shop');
+                }
+            } else {
+                navigate('/login');
             }
-        } else {
-            navigate('/login');
+        } catch (error) {
+            console.log(error);
         }
+
 
 
     }
 
     const addCommentHandler = async (e) => {
         e.preventDefault();
-        const formData = new FormData(e.target);
+        try {
+            const formData = new FormData(e.target);
 
         const newComment = await commentService.create(
             phoneId,
@@ -55,6 +66,10 @@ export default function Details() {
         );
         setComments(state => [...state, { ...newComment, owner: { username } }]);
         e.target.reset();
+        } catch (error) {
+            console.log(error);
+        }
+        
     };
     return (
         <>

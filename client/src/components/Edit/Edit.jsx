@@ -3,7 +3,6 @@ import * as phoneService from '../../services/phoneService';
 import { useEffect, useState } from "react";
 import '../Edit/edit.css'
 
-
 export default function Edit() {
   const navigate = useNavigate();
   const { phoneId } = useParams();
@@ -17,28 +16,37 @@ export default function Edit() {
   });
 
   useEffect(() => {
-    phoneService.getOne(phoneId)
-      .then(result => {
+    const fetchPhone = async () => {
+      try {
+        const result = await phoneService.getOne(phoneId);
         setPhone(result);
-      });
+      } catch (error) {
+        console.error("Error fetching phone:", error);
+      }
+    };
+
+    fetchPhone();
   }, [phoneId]);
 
   const editPhoneSubmitHandler = async (e) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget)
+
+    const formData = new FormData(e.currentTarget);
     const values = Object.fromEntries(formData);
+
     try {
       await phoneService.edit(phoneId, values);
-
       navigate('/shop');
     } catch (error) {
-      console.log(error);
+      console.error("Error editing phone:", error);
+      // Handle the error appropriately (e.g., show an error message to the user)
     }
-  }
+  };
+
   const onChange = (e) => {
-    setPhone(state => ({
+    setPhone((state) => ({
       ...state,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     }));
   };
 
